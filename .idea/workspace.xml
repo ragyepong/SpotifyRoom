@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cab26753-0228-4a04-9f50-2c33b15fef92" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SpotifyRoom/api/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpotifyRoom/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
