@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cab26753-0228-4a04-9f50-2c33b15fef92" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/CreateRoomPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/HomePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/JoinRoomPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/templates/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/templates/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
