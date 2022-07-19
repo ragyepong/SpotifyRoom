@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cab26753-0228-4a04-9f50-2c33b15fef92" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/CreateRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/CreateRoomPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
     </list>
@@ -62,16 +60,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SpotifyRoom/api/views.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
