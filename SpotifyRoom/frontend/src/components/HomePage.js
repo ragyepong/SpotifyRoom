@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import JoinRoomPage from "./JoinRoomPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
@@ -16,7 +16,13 @@ export default function HomePage() {
 
     const [roomState, setRoomState] = useState({roomCode:null});
 
+    const calledOnce = React.useRef(false);
+
     useEffect(() => {
+        if (calledOnce.current) {
+            return;
+        }
+
         fetch('/api/user-in-room')
             .then((response) => response.json())
             .then((data) => {
@@ -24,8 +30,17 @@ export default function HomePage() {
                     ...roomState,
                     roomCode: data.code,
                 });
+
+                calledOnce.current = true;
             });
     });
+
+    const clearRoomCode = () => {
+        setRoomState({
+            ...roomState,
+            roomCode: null,
+        });
+    };
 
     const renderHomePage = () => {
         return(
@@ -57,7 +72,7 @@ export default function HomePage() {
                 } />
                 <Route path="/join" element={<JoinRoomPage />} />
                 <Route path="/create" element={<CreateRoomPage />} />
-                <Route path="/room/:roomCode" element={<Room />} />
+                <Route path="/room/:roomCode" element={<Room leaveRoomCallback={clearRoomCode} />} />
             </Routes>
         </Router>
     );
