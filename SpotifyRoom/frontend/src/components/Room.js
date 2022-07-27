@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Grid, Button, Typography } from "@mui/material"
+import CreateRoomPage from "./CreateRoomPage";
 
 
 export default function Room(props) {
@@ -8,20 +9,18 @@ export default function Room(props) {
     let navigate  = useNavigate();
     const calledOnce = React.useRef(false);
 
-    const[votesToSkip, setVotesToSkip] = useState(2);
-    const[guestCanPause, setGuestCanPause] = useState(false);
-    const[isHost, setIsHost] = useState(false);
-
+    const [roomState, setRoomState] = useState({votesToSkip:useState(2), guestCanPause:useState(false), isHost:useState(false), showSettings:useState(false)})
     const { roomCode } = useParams();
 
     useEffect(() => {
         if (calledOnce.current) {
             return;
+        } else {
+            calledOnce.current = true;
         }
 
         fetch('/api/get-room?code='+roomCode)
             .then((response) => {
-                calledOnce.current = true;
                 if (!response.ok) {
                     props.leaveRoomCallback();
                     navigate("/");
@@ -29,13 +28,14 @@ export default function Room(props) {
                 return response.json()
             })
             .then((data) => {
-                setVotesToSkip(data.votes_to_skip);
-                setGuestCanPause(data.guest_can_pause);
-                setIsHost(data.is_host);
+                setRoomState({
+                    ...roomState,
+                    votesToSkip: data.votes_to_skip,
+                    guestCanPause: data.guest_can_pause,
+                    isHost: data.is_host
+                });
             });
     });
-
-
 
     const leaveButtonPressed = (e) =>  {
         const requestOptions = {
@@ -50,6 +50,46 @@ export default function Room(props) {
             });
     };
 
+    const updateShowSettings = (value) => {
+        setRoomState({
+            ...roomState,
+            showSettings: value
+        });
+    };
+
+    const renderSettings = () => {
+        return (
+            <Grid container spacing={1}>
+                <Grid item xs={12} align="center">
+                    <CreateRoomPage
+                        update={true}
+                        votesToSkip={roomState.votesToSkip}
+                        guestCanPause={roomState.guestCanPause}
+                        roomCode={roomState.roomCode}
+                        updateCallback={() => {}} />
+                </Grid>
+                <Grid item xs={12} align="center">
+                    <Button variant="contained" color="secondary" onClick={() => updateShowSettings(false)}>
+                        Close
+                    </Button>
+                </Grid>
+            </Grid>
+        );
+    };
+
+    const renderSettingsButton = () => {
+        return (
+            <Grid item xs={12} align="center">
+                <Button variant="contained" color="primary" onClick={() => updateShowSettings(true)}>
+                    Settings
+                </Button>
+            </Grid>
+        );
+    };
+
+    if (roomState.showSettings) {
+        return renderSettings();
+    }
     return (
         <Grid container spacing={1}>
             <Grid item xs={12} align="center">
@@ -59,19 +99,20 @@ export default function Room(props) {
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Votes: {votesToSkip}
+                    Votes: {roomState.votesToSkip}
                 </Typography>
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Guest Can Pause: {String(guestCanPause)}
+                    Guest Can Pause: {String(roomState.guestCanPause)}
                 </Typography>
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Host: {String(isHost)}
+                    Host: {String(roomState.isHost)}
                 </Typography>
             </Grid>
+            {roomState.isHost ? renderSettingsButton() : null}
             <Grid item xs={12} align="center">
                 <Button variant="contained" color="secondary" onClick={leaveButtonPressed}>
                     Leave Room
