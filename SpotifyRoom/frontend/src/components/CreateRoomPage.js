@@ -11,6 +11,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
 import { Collapse } from "@mui/material";
+import { Alert } from "@mui/lab";
 
 export default function CreateRoomPage(props) {
     let navigate  = useNavigate();
@@ -20,8 +21,8 @@ export default function CreateRoomPage(props) {
                                         guestCanPause:props.guestCanPause,
                                         update:props.update, roomCode:props.roomCode,
                                         updateCallback: props.updateCallback,
-                                        successMessage: useState(""),
-                                        errorMessage: useState("")
+                                        successMessage: props.successMessage,
+                                        errorMessage: props.errorMessage
                                     })
 
     const handleVotesChange = (e) =>  {
@@ -113,7 +114,26 @@ export default function CreateRoomPage(props) {
         <Grid container spacing={1}>
             <Grid item xs={12} align="center">
                 <Collapse in={roomState.errorMessage != "" || roomState.successMessage != ""}>
-                    {roomState.successMessage}
+                    {roomState.successMessage != "" ? (<Alert
+                                                        severity="success"
+                                                        onClose={() => {
+                                                            setRoomState({
+                                                                ...roomState,
+                                                                successMessage: "",
+                                                            });
+                                                        }}>
+                                                            {roomState.successMessage}
+                                                        </Alert>) :
+                                                    (<Alert
+                                                        severity="error"
+                                                        onClose={() => {
+                                                            setRoomState({
+                                                                ...roomState,
+                                                                errorMessage: "",
+                                                            });
+                                                    }}>
+                                                        {roomState.errorMessage}
+                                                    </Alert>)}
                 </Collapse>
             </Grid>
             <Grid item xs={12} align="center">
@@ -170,5 +190,7 @@ CreateRoomPage.defaultProps = {
     guestCanPause: true,
     update: false,
     roomCode: null,
+    successMessage: "",
+    errorMessage: "",
     updateCallback: () => {}
 };
