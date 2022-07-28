@@ -9,16 +9,10 @@ export default function Room(props) {
     let navigate  = useNavigate();
     const calledOnce = React.useRef(false);
 
-    const [roomState, setRoomState] = useState({votesToSkip:useState(2), guestCanPause:useState(false), isHost:useState(false), showSettings:useState(false)})
+    const [roomState, setRoomState] = useState({votesToSkip:props.votesToSkip, guestCanPause:props.guestCanPause, isHost:props.isHost, showSettings:props.showSettings})
     const { roomCode } = useParams();
 
-    useEffect(() => {
-        if (calledOnce.current) {
-            return;
-        } else {
-            calledOnce.current = true;
-        }
-
+    const getRoomDetails = () => {
         fetch('/api/get-room?code='+roomCode)
             .then((response) => {
                 if (!response.ok) {
@@ -35,6 +29,16 @@ export default function Room(props) {
                     isHost: data.is_host
                 });
             });
+    }
+
+    useEffect(() => {
+        if (calledOnce.current) {
+            return;
+        } else {
+            calledOnce.current = true;
+        }
+
+        getRoomDetails();
     });
 
     const leaveButtonPressed = (e) =>  {
@@ -65,8 +69,8 @@ export default function Room(props) {
                         update={true}
                         votesToSkip={roomState.votesToSkip}
                         guestCanPause={roomState.guestCanPause}
-                        roomCode={roomState.roomCode}
-                        updateCallback={() => {}} />
+                        roomCode={roomCode}
+                        updateCallback={getRoomDetails} />
                 </Grid>
                 <Grid item xs={12} align="center">
                     <Button variant="contained" color="secondary" onClick={() => updateShowSettings(false)}>
