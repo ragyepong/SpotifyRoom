@@ -11,7 +11,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
 import { Collapse } from "@mui/material";
-import { Alert } from "@mui/lab";
+import { Alert } from '@mui/material';
 
 export default function CreateRoomPage(props) {
     let navigate  = useNavigate();

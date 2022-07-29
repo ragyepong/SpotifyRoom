@@ -9,7 +9,7 @@ export default function Room(props) {
     let navigate  = useNavigate();
     const calledOnce = React.useRef(false);
 
-    const [roomState, setRoomState] = useState({votesToSkip:props.votesToSkip, guestCanPause:props.guestCanPause, isHost:props.isHost, showSettings:props.showSettings})
+    const [roomState, setRoomState] = useState({votesToSkip:props.votesToSkip, guestCanPause:props.guestCanPause, isHost:props.isHost, showSettings:props.showSettings, spotifyAuthenticated:props.spotifyAuthenticated});
     const { roomCode } = useParams();
 
     const getRoomDetails = () => {
@@ -28,8 +28,21 @@ export default function Room(props) {
                     guestCanPause: data.guest_can_pause,
                     isHost: data.is_host
                 });
+                if (data.is_host) {
+                    authenticateSpotify();
+                }
             });
-    }
+    };
+
+    const authenticateSpotify = () => {
+        fetch('/spotify/is-authenticated').then((response) => response.json()).then((data) => {
+            if (!data.Status){
+                fetch('/spotify/get-auth-url').then((response) => response.json()).then((data) => {
+                    window.location.replace(data.url);
+                })
+            }
+        })
+    };
 
     useEffect(() => {
         if (calledOnce.current) {

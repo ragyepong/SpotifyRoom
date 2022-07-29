@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
 from rest_framework.response import Response
-from .util import update_or_create_user_tokens
+from .util import update_or_create_user_tokens, is_spotify_authenticated
 from django.shortcuts import redirect
 
 
@@ -27,7 +27,7 @@ def spotify_callback(request, format=None):
     error = request.GET.get('error')
 
     response = post('https://accounts.spotify.com/api/token', data={
-        'grant-type': 'authorization_code',
+        'grant_type': 'authorization_code',
         'code': code,
         'redirect_uri': REDIRECT_URI,
         'client_id': CLIENT_ID,
@@ -47,3 +47,8 @@ def spotify_callback(request, format=None):
 
     return redirect('frontend:')
 
+
+class IsAuthenticated(APIView):
+    def get(self, request, format=None):
+        is_authenticated = is_spotify_authenticated(self.request.session.session_key)
+        return Response({'Status': is_authenticated}, status=status.HTTP_200_OK)
