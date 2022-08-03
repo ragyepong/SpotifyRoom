@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Grid, Button, Typography } from "@mui/material"
 import CreateRoomPage from "./CreateRoomPage";
+import MusicPlayer from "./MusicPlayer";
 
 
 export default function Room(props) {
@@ -9,7 +10,13 @@ export default function Room(props) {
     let navigate  = useNavigate();
     const calledOnce = React.useRef(false);
 
-    const [roomState, setRoomState] = useState({votesToSkip:props.votesToSkip, guestCanPause:props.guestCanPause, isHost:props.isHost, showSettings:props.showSettings, spotifyAuthenticated:props.spotifyAuthenticated});
+    const [roomState, setRoomState] = useState({
+        votesToSkip:props.votesToSkip,
+        guestCanPause:props.guestCanPause,
+        isHost:props.isHost,
+        showSettings:props.showSettings,
+        spotifyAuthenticated:props.spotifyAuthenticated,
+        song: {}});
     const { roomCode } = useParams();
 
     const getRoomDetails = () => {
@@ -22,12 +29,12 @@ export default function Room(props) {
                 return response.json()
             })
             .then((data) => {
-                setRoomState({
+                setRoomState(roomState => ({
                     ...roomState,
                     votesToSkip: data.votes_to_skip,
                     guestCanPause: data.guest_can_pause,
                     isHost: data.is_host
-                });
+                }));
                 if (data.is_host) {
                     authenticateSpotify();
                 }
@@ -40,6 +47,10 @@ export default function Room(props) {
                 fetch('/spotify/get-auth-url').then((response) => response.json()).then((data) => {
                     window.location.replace(data.url);
                 })
+                setRoomState(roomState => ({
+                    ...roomState,
+                    spotifyAuthenticated: True
+                }));
             }
         })
     };
@@ -52,7 +63,28 @@ export default function Room(props) {
         }
 
         getRoomDetails();
-    });
+        const interval = setInterval(() => {
+            getCurrentSong();
+          }, 1000);
+
+        return () => clearInterval(interval);
+      }, []);
+
+    const getCurrentSong = () => {
+        fetch('/spotify/current-song').then((response) => {
+            if (!response.ok) {
+                return {};
+            } else {
+                return response.json();
+            }
+        }).then((data) => {
+            setRoomState(roomState => ({
+                ...roomState,
+                song: data
+            }));
+            console.log(data);
+        })
+    }
 
     const leaveButtonPressed = (e) =>  {
         const requestOptions = {
@@ -68,10 +100,10 @@ export default function Room(props) {
     };
 
     const updateShowSettings = (value) => {
-        setRoomState({
+        setRoomState(roomState => ({
             ...roomState,
             showSettings: value
-        });
+        }));
     };
 
     const renderSettings = () => {
@@ -116,21 +148,7 @@ export default function Room(props) {
                     Code: {roomCode}
                 </Typography>
             </Grid>
-            <Grid item xs={12} align="center">
-                <Typography variant="h6" component="h6">
-                    Votes: {roomState.votesToSkip}
-                </Typography>
-            </Grid>
-            <Grid item xs={12} align="center">
-                <Typography variant="h6" component="h6">
-                    Guest Can Pause: {String(roomState.guestCanPause)}
-                </Typography>
-            </Grid>
-            <Grid item xs={12} align="center">
-                <Typography variant="h6" component="h6">
-                    Host: {String(roomState.isHost)}
-                </Typography>
-            </Grid>
+            <MusicPlayer {...roomState.song} />
             {roomState.isHost ? renderSettingsButton() : null}
             <Grid item xs={12} align="center">
                 <Button variant="contained" color="secondary" onClick={leaveButtonPressed}>
