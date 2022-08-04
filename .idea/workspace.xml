@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cab26753-0228-4a04-9f50-2c33b15fef92" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/api/migrations/0003_room_current_song.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpotifyRoom/spotify/migrations/0002_vote.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/SpotifyRoom/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/api/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/MusicPlayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/src/components/MusicPlayer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpotifyRoom/spotify/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/spotify/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/spotify/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/spotify/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/spotify/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/spotify/util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpotifyRoom/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpotifyRoom/spotify/views.py" afterDir="false" />
